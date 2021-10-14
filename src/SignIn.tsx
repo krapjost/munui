@@ -9,7 +9,9 @@ const Container = styled.div`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	gap: 1em;
 	align-items: center;
+	justify-content: center;
 `;
 
 const rotate = keyframes`
@@ -105,6 +107,8 @@ const StyledLogo = styled(MunuiLogo)`
 `;
 
 const GoogleLoginBtn = styled.button`
+	font-size: 1.2em;
+	border-radius: .5em;
 	padding: 1em;
 	margin: 0.5em;
 	border: none;
@@ -115,6 +119,35 @@ const GoogleLoginBtn = styled.button`
 		background-color: white;
 		border: 1px solid black;
 	}
+`
+
+const H1 = styled.h1`
+	margin: 0;
+	font-size: 2.8em;
+	max-width: 300px;
+	word-break: keep-all;
+	text-align: center;
+	font-weight: bold;
+	color: #A15186;
+`
+
+const H2 = styled.h2`
+	margin: 0;
+	font-size: 1.8em;
+	max-width: 340px;
+	word-break: keep-all;
+	text-align: center;
+	font-weight: 600;
+	color: white;
+`
+
+const PrimaryBtn = styled.button`
+	border: none;
+	outline: none;
+	box-shadow: 0px 0px 0px 2px #89DF8C;
+	color: #89DF8C;
+	padding: 1em;
+	font-size: 1.5em;
 `
 
 export default function SignIn() {
@@ -137,6 +170,15 @@ export default function SignIn() {
     return (
 		<Container>
 			<StyledLogo />
+			<H1>
+				모두를 위한 디자인 툴
+			</H1>
+			<H2>
+				MUNUI의 조작 방법에 대한 설명을 들으시겠어요?
+			</H2>
+			<PrimaryBtn>
+				네 알려주세요
+			</PrimaryBtn>
 			<GoogleLoginBtn onClick={signInWithGoogle}>
 				Sign in with Google
 			</GoogleLoginBtn>
