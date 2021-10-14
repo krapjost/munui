@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import SketchBook from './Sketch';
+import SignIn from './SignIn';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Reactdddddasdasd
-        </a>
-      </header>
-    </div>
-  );
+import fireConfig from './fireConfig';
+import { getAuth } from 'firebase/auth';
+import { initializeApp } from 'firebase/app';
+import { useAuthState } from 'react-firebase-hooks/auth';
+
+initializeApp(fireConfig);
+
+export default function App() {
+    const auth = getAuth();
+    const [user] = useAuthState(auth);
+
+    return (
+	<>
+	    {user ? <SketchBook /> : <SignIn />}
+	</>
+    );
 }
 
-export default App;
