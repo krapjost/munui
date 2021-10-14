@@ -22,7 +22,7 @@ const rotate = keyframes`
 		transform: rotate(360deg);
 	}
 `;
-
+/**
 const redToBlue = keyframes`
 	0% {
 		fill: red;
@@ -34,6 +34,7 @@ const redToBlue = keyframes`
 		fill: red;
 	}
 `
+
 const greenToPurple = keyframes`
 	0% {
 		fill: green;
@@ -45,6 +46,7 @@ const greenToPurple = keyframes`
 		fill: green;
 	}
 `
+
 const blueToGreen = keyframes`
 	0% {
 		fill: blue;
@@ -56,55 +58,60 @@ const blueToGreen = keyframes`
 		fill: blue;
 	}
 `
+**/
+
 const StyledLogo = styled(MunuiLogo)`
 	&& {
 		width: 50%;
-		height: 300px;
-		animation: ${rotate} 5s linear infinite;
-		g {
-			g:nth-child(2) {
-				path {
-					animation: ${redToBlue} 2s linear infinite
-				}
-			}
-			g:nth-child(3) {
-				path {
-					animation: ${greenToPurple} 3s ease-out infinite
-				}
-			}
-			g:nth-child(4) {
-				path {
-					animation: ${redToBlue} 10s ease-in infinite
-				}
-			}
-			g:nth-child(5) {
-				path {
-					animation: ${greenToPurple} 3s ease-in infinite
-				}
-			}
-			g:nth-child(6) {
-				path {
-					animation: ${redToBlue} 4s ease infinite
-				}
-			}
-			g:nth-child(7) {
-				path {
-					animation: ${greenToPurple} 3s ease infinite
-				}
-			}
-			g:nth-child(8) {
-				path {
-					animation: ${blueToGreen} 6s ease infinite
-				}
-			}
-			g:nth-child(9) {
-				path {
-					animation: ${greenToPurple} 3s ease infinite
-				}
-			}
-		}
+		height: min-content;
+		animation: ${rotate} 5s ease infinite;
 	}
 `;
+
+/*
+g{
+g:nth-child(2) {
+	path {
+		animation: ${redToBlue} 2s linear infinite
+	}
+}
+g:nth-child(3) {
+	path {
+		animation: ${greenToPurple} 3s ease-out infinite
+	}
+}
+g:nth-child(4) {
+	path {
+		animation: ${redToBlue} 10s ease-in infinite
+	}
+}
+g:nth-child(5) {
+	path {
+		animation: ${greenToPurple} 3s ease-in infinite
+	}
+}
+g:nth-child(6) {
+	path {
+		animation: ${redToBlue} 4s ease infinite
+	}
+}
+g:nth-child(7) {
+	path {
+		animation: ${greenToPurple} 3s ease infinite
+	}
+}
+g:nth-child(8) {
+	path {
+		animation: ${blueToGreen} 6s ease infinite
+	}
+}
+g:nth-child(9) {
+	path {
+		animation: ${greenToPurple} 3s ease infinite
+	}
+}
+}
+*/
 
 const GoogleLoginBtn = styled.button`
 	font-size: 1.2em;
@@ -144,10 +151,32 @@ const H2 = styled.h2`
 const PrimaryBtn = styled.button`
 	border: none;
 	outline: none;
-	box-shadow: 0px 0px 0px 2px #89DF8C;
+	background: none;
+	border-radius: .5em;
+	box-shadow: 0px 0px 0px 2px #89DF8C inset;
 	color: #89DF8C;
-	padding: 1em;
-	font-size: 1.5em;
+	padding: .5em 1em;
+	font-size: 1.3em;
+	line-height: 1.4em;
+`
+
+const SecondaryBtn = styled.button`
+	border: none;
+	outline: none;
+	background: #7E2E63;
+	border-radius: .5em;
+	color: white;
+	padding: .5em 1em;
+	font-size: 1.3em;
+	line-height: 1.4em;
+`
+
+const FlexRow = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 1em;
 `
 
 export default function SignIn() {
@@ -176,9 +205,14 @@ export default function SignIn() {
 			<H2>
 				MUNUI의 조작 방법에 대한 설명을 들으시겠어요?
 			</H2>
-			<PrimaryBtn>
-				네 알려주세요
-			</PrimaryBtn>
+			<FlexRow>
+				<SecondaryBtn>
+					귀찮아요
+				</SecondaryBtn>
+				<PrimaryBtn>
+					네 알려주세요
+				</PrimaryBtn>
+			</FlexRow>
 			<GoogleLoginBtn onClick={signInWithGoogle}>
 				Sign in with Google
 			</GoogleLoginBtn>
