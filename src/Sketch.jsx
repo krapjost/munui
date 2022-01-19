@@ -1,7 +1,6 @@
 import React from 'react';
 import { ReactP5Wrapper } from 'react-p5-wrapper';
 
-
 function getTouchPos ( touches, firstIdx, secondIdx) {
     const x1 = touches[firstIdx].x;
     const y1 = touches[firstIdx].y;

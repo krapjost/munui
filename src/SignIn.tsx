@@ -1,17 +1,35 @@
-import React from 'react';
-import styled, { keyframes }from 'styled-components';
-import {ReactComponent as MunuiLogo} from './icons/moonlogo.svg';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { useState } from "react";
+import styled, { keyframes } from "styled-components";
+import { ReactComponent as MunuiLogo } from "./icons/moonlogo.svg";
+
+const sizes = {
+  mobileS: "320px",
+  mobileM: "375px",
+  mobileL: "425px",
+  tablet: "768px",
+  laptop: "1024px",
+  laptopL: "1440px",
+  desktop: "2560px",
+};
+
+export const devices = {
+  mobileS: `(min-width: ${sizes.mobileS})`,
+  mobileM: `(min-width: ${sizes.mobileM})`,
+  mobileL: `(min-width: ${sizes.mobileL})`,
+  tablet: `(min-width: ${sizes.tablet})`,
+  laptop: `(min-width: ${sizes.laptop})`,
+  laptopL: `(min-width: ${sizes.laptopL})`,
+  desktop: `(min-width: ${sizes.desktop})`,
+};
 
 const Container = styled.div`
-	background-color: #222222;
-	height: 100%;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: 1em;
-	align-items: center;
-	justify-content: center;
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const rotate = keyframes`
@@ -22,200 +40,164 @@ const rotate = keyframes`
 		transform: rotate(360deg);
 	}
 `;
-/**
-const redToBlue = keyframes`
-	0% {
-		fill: red;
-	}
-	50% {
-		fill : blue;
-	}
-	100% {
-		fill: red;
-	}
-`
-
-const greenToPurple = keyframes`
-	0% {
-		fill: green;
-	}
-	50% {
-		fill: purple;
-	}
-	100% {
-		fill: green;
-	}
-`
-
-const blueToGreen = keyframes`
-	0% {
-		fill: blue;
-	}
-	50% {
-		fill: green;
-	}
-	100% {
-		fill: blue;
-	}
-`
-**/
 
 const StyledLogo = styled(MunuiLogo)`
-	&& {
-		width: 50%;
-		height: min-content;
-		animation: ${rotate} 5s ease infinite;
-	}
+  width: 50%;
+  max-width: 350px;
+  height: min-content;
+
+  .back {
+    fill: black;
+    &:hover {
+      fill: red;
+    }
+  }
+  .color1 {
+    fill: blue;
+    &:hover {
+      fill: red;
+    }
+  }
+  .color2 {
+    fill: blue;
+    &:hover {
+      fill: red;
+    }
+  }
+  .color3 {
+    fill: blue;
+    &:hover {
+      fill: red;
+    }
+  }
+  .color4 {
+    fill: blue;
+    &:hover {
+      fill: red;
+    }
+  }
+  .color5 {
+    fill: blue;
+    &:hover {
+      fill: red;
+    }
+  }
+  .color6 {
+    fill: blue;
+    &:hover {
+      fill: red;
+    }
+  }
+  .front {
+    fill: blue;
+    &:hover {
+      fill: red;
+    }
+  }
+  animation: ${rotate} 7s cubic-bezier(0.83, 0, 0.17, 1) infinite;
 `;
 
-/*
-g{
-g:nth-child(2) {
-	path {
-		animation: ${redToBlue} 2s linear infinite
-	}
-}
-g:nth-child(3) {
-	path {
-		animation: ${greenToPurple} 3s ease-out infinite
-	}
-}
-g:nth-child(4) {
-	path {
-		animation: ${redToBlue} 10s ease-in infinite
-	}
-}
-g:nth-child(5) {
-	path {
-		animation: ${greenToPurple} 3s ease-in infinite
-	}
-}
-g:nth-child(6) {
-	path {
-		animation: ${redToBlue} 4s ease infinite
-	}
-}
-g:nth-child(7) {
-	path {
-		animation: ${greenToPurple} 3s ease infinite
-	}
-}
-g:nth-child(8) {
-	path {
-		animation: ${blueToGreen} 6s ease infinite
-	}
-}
-g:nth-child(9) {
-	path {
-		animation: ${greenToPurple} 3s ease infinite
-	}
-}
-}
-*/
-
-const GoogleLoginBtn = styled.button`
-	font-size: 1.2em;
-	border-radius: .5em;
-	padding: 1em;
-	margin: 0.5em;
-	border: none;
-	background-color: black;
-	color: white;
-	&:hover {
-		color: black;
-		background-color: white;
-		border: 1px solid black;
-	}
-`
-
-const H1 = styled.h1`
-	margin: 0;
-	font-size: 2.8em;
-	max-width: 300px;
-	word-break: keep-all;
-	text-align: center;
-	font-weight: bold;
-	color: #A15186;
-`
+const H1 = styled.h1<{ show: boolean }>`
+  margin: 0;
+  font-size: 3em;
+  word-break: break-all;
+  text-align: center;
+  font-weight: 300;
+  font-family: ${(props) =>
+    props.show ? "'Permanent Marker', cursive" : '"Libre Barcode 39", cursive'};
+  color: ${(props) => (props.show ? "blue" : "rgb(0,255, 80)")};
+  background: ${(props) => (props.show ? "black" : "black")};
+  @media ${devices.mobileS} {
+    font-size: ${(props) => (props.show ? "4em" : "6em")};
+    max-width: 200px;
+  }
+  @media ${devices.tablet} {
+    font-size: ${(props) => (props.show ? "7em" : "10em")};
+    max-width: 500px;
+  }
+  &::selection {
+    color: blue;
+    background: black;
+  }
+`;
 
 const H2 = styled.h2`
-	margin: 0;
-	font-size: 1.8em;
-	max-width: 340px;
-	word-break: keep-all;
-	text-align: center;
-	font-weight: 600;
-	color: white;
-`
+  margin: 1em;
+  padding: 0em 1em;
+  font-size: 2em;
+  max-width: 500px;
+  word-break: keep-all;
+  text-align: center;
+  font-weight: 300;
+  color: rgb(255, 80, 170);
+  font-family: "Knewave", cursive;
 
-const PrimaryBtn = styled.button`
-	border: none;
-	outline: none;
-	background: none;
-	border-radius: .5em;
-	box-shadow: 0px 0px 0px 2px #89DF8C inset;
-	color: #89DF8C;
-	padding: .5em 1em;
-	font-size: 1.3em;
-	line-height: 1.4em;
-`
+  @media ${devices.mobileS} {
+    font-size: 1.8em;
+  }
 
-const SecondaryBtn = styled.button`
-	border: none;
-	outline: none;
-	background: #7E2E63;
-	border-radius: .5em;
-	color: white;
-	padding: .5em 1em;
-	font-size: 1.3em;
-	line-height: 1.4em;
-`
+  @media ${devices.tablet} {
+    font-size: 2.2em;
+  }
+  @media ${devices.laptop} {
+    font-size: 3.5em;
+  }
 
-const FlexRow = styled.div`
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	gap: 1em;
-`
+  @media ${devices.desktop} {
+    font-size: 4em;
+  }
+`;
+
+const H3 = styled.h3`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) rotate(175deg);
+  font-weight: 300;
+  font-size: 1em;
+  font-family: "Libre Barcode 39", cursive;
+  color: rgb(255, 0, 100);
+  @media ${devices.mobileS} {
+    font-size: 1.5em;
+  }
+  @media ${devices.tablet} {
+    font-size: 3.2em;
+  }
+  &::selection {
+    background: yellow;
+  }
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: wrap;
+  position: relative;
+  gap: 2em;
+`;
 
 export default function SignIn() {
+  const [show, setShow] = useState(false);
 
-    const signInWithGoogle = () => {
-	const auth = getAuth();
-	const provider = new GoogleAuthProvider();
-	signInWithPopup(auth, provider)
-	    .then((res) => {
-		const credential = GoogleAuthProvider.credentialFromResult(res);
-		const token = credential?.accessToken;
-		const user = res.user;
-	    })
-	    .catch((err) => {
-		const {code, message, email} = err;
-		const credential = GoogleAuthProvider.credentialFromError(err);
-	    })
-    };
-
-    return (
-		<Container>
-			<StyledLogo />
-			<H1>
-				모두를 위한 디자인 툴
-			</H1>
-			<H2>
-				MUNUI의 조작 방법에 대한 설명을 들으시겠어요?
-			</H2>
-			<FlexRow>
-				<SecondaryBtn>
-					귀찮아요
-				</SecondaryBtn>
-				<PrimaryBtn>
-					네 알려주세요
-				</PrimaryBtn>
-			</FlexRow>
-			<GoogleLoginBtn onClick={signInWithGoogle}>
-				Sign in with Google
-			</GoogleLoginBtn>
-		</Container>
-    )
+  return (
+    <Container>
+      <H2>NFT Marketplace for Design Assets</H2>
+      <Wrapper>
+        <StyledLogo
+          onClick={(e) => {
+            console.log(`clicked ${e}`);
+          }}
+        />
+        <H1
+          show={show}
+          onDoubleClick={(e) => {
+            setShow(!show);
+          }}
+        >
+          MOONEE
+        </H1>
+      </Wrapper>
+    </Container>
+  );
 }
